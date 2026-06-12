@@ -35,6 +35,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Iterable, Optional, Sequence
 
+try:
+    import torch  # noqa: F401 - seeds/loads CUDA libs on Linux
+except ImportError:
+    pass
+
 logger = logging.getLogger(__name__)
 
 # Patterns for parsing COLMAP's stderr log lines
@@ -487,6 +492,11 @@ if os.name == "nt" and lib_dir:
         pass
 
 try:
+    import torch  # seeds/loads CUDA libs on Linux
+except ImportError:
+    pass
+
+try:
     import pycolmap
     pycolmap.logging.logtostderr = True
     pycolmap.logging.verbose_level = 1
@@ -644,6 +654,11 @@ if os.name == "nt" and lib_dir:
         os.add_dll_directory(lib_dir)
     except OSError:
         pass
+
+try:
+    import torch  # seeds/loads CUDA libs on Linux
+except ImportError:
+    pass
 
 try:
     import pycolmap

@@ -10,7 +10,9 @@ dependencies = [
     "huggingface-hub==1.9.0",
     "opencv-contrib-python==4.13.0.90",
     "numpy",
-    "pycolmap-cuda12",
+    "pycolmap-cuda12>=4.0.0",
+    "nvidia-cuda-runtime-cu12",
+    "nvidia-curand-cu12",
     "static-ffmpeg",
     "sam2==1.1.0",
     "ultralytics>=8.4.33",
@@ -33,6 +35,9 @@ Issues = "https://github.com/alexmgee/lichtfeld-360-plugin/issues"
 
 [tool.uv]
 exclude-dependencies = ["opencv-python", "opencv-python-headless"]
+override-dependencies = [
+    "cuda-toolkit==12.9.2.0",
+]
 
 [tool.uv.sources]
 opencv-contrib-python = [

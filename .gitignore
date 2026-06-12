@@ -23,3 +23,4 @@ tests/
 DIAGNOSTICS.md
 HANDOVER.md
 AGENTS.md
+uv.lock
