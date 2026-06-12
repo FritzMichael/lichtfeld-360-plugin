@@ -260,7 +260,10 @@ def _configure_ba(solver: str, camera_model: str):
         opts.backend = CERES
         opts.ceres.use_gpu = True
         opts.ceres.auto_select_solver_type = True
-        opts.ceres.solver_options.sparse_linear_algebra_library_type = SLA.CUDA_SPARSE
+        if hasattr(SLA, "CUDA_SPARSE"):
+            opts.ceres.solver_options.sparse_linear_algebra_library_type = SLA.CUDA_SPARSE
+        elif hasattr(SLA, "SUITE_SPARSE"):
+            opts.ceres.solver_options.sparse_linear_algebra_library_type = SLA.SUITE_SPARSE
 
     if solver == "ceres":
         # Pure CPU Ceres — for debugging or baseline comparison
